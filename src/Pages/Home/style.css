@@ -1,0 +1,38 @@
+.home-container {
+  padding: 0rem !important;
+  max-width: 1374px !important;
+  display: flex !important;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.nav-top {
+  padding-left: 5rem !important;
+  padding-right: 5rem !important;
+}
+.search-bar {
+  box-shadow: none !important;
+  background: none !important;
+}
+.nav-search-input {
+  border: none;
+  outline: none;
+  width: 90%;
+  background: none;
+}
+.tabs {
+  width: 100%;
+}
+.tabs > div > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.tabs > div > span {
+  display: none !important;
+  background-color: #f86338 !important;
+}
+@media (max-width:500px) {
+    
+}
