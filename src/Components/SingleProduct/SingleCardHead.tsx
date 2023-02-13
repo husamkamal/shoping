@@ -10,7 +10,6 @@ export default function SingleCardHead() {
   useEffect(() => {
     const getProduct = async () => {
       const response = await getSingleProducts(id);
-      console.log(response);
       setSingleProduct(response);
     };
     getProduct();

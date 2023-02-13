@@ -11,10 +11,21 @@ import { allCategory } from "../../api";
 export default function SideBar({
   setCategoryType,
   categoryType,
+  setSearch,
+  search,
+  price,
+  setPrice,
+  productList,
 }: {
   setCategoryType: React.Dispatch<React.SetStateAction<string>>;
   categoryType: string;
+  search: string;
+  setSearch: React.Dispatch<any>;
+  price: number;
+  setPrice: React.Dispatch<any>;
+  productList: any;
 }) {
+  const [maxPrice, setMaxPrice] = useState<number>(100);
   const [category, setCategory] = useState<any>([]);
   useEffect(() => {
     const getCategory = async () => {
@@ -23,7 +34,18 @@ export default function SideBar({
     };
     getCategory();
   }, []);
-  if (!category.length) return <p>Loading ...</p>;
+  useEffect(() => {
+    const maxPriceFilter = productList?.map((e: any) => {
+      return e.price;
+    });
+    setMaxPrice(Math.max(...maxPriceFilter));
+  }, []);
+  const handleChange = (event: any, newValue: any) => {
+    if (typeof newValue === "number") {
+      setPrice(newValue);
+    }
+  };
+  if (!category?.length) return <p>Loading ...</p>;
   return (
     <Box
       display="flex"
@@ -47,8 +69,8 @@ export default function SideBar({
           type="text"
           className="nav-search-input"
           placeholder="Search what you need"
-          value={categoryType}
-          onChange={(e) => setCategoryType(e.target.value)}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
         />
         <Search />
       </Box>
@@ -81,6 +103,11 @@ export default function SideBar({
           defaultValue={50}
           aria-label="Default"
           valueLabelDisplay="auto"
+          step={10}
+          max={maxPrice || 100}
+          min={5}
+          value={price}
+          onChange={handleChange}
           style={{ margin: "1rem 0" }}
         />
         <Box
@@ -105,7 +132,7 @@ export default function SideBar({
             letterSpacing=" 0.005em"
             color=" #11142D"
           >
-            $5-$20
+            $5-${Number(maxPrice)}
           </Typography>
         </Box>
       </Box>
