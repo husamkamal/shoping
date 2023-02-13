@@ -39,6 +39,7 @@ export default function SideBar({
       return e.price;
     });
     setMaxPrice(Math.max(...maxPriceFilter));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const handleChange = (event: any, newValue: any) => {
     if (typeof newValue === "number") {
