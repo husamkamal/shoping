@@ -35,13 +35,13 @@ export default function ShopFilter() {
       });
       setFilterData(searchFilter);
     }
-  }, [search]);
+  }, [search, productList]);
   useEffect(() => {
     const productPrice = productList?.filter((e: any) => {
       return e.price < price;
     });
     setFilterData(productPrice);
-  }, [price]);
+  }, [price, productList]);
   if (!productList?.length) return <p>Loading ...</p>;
 
   return (
